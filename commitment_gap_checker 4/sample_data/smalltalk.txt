@@ -1,8 +1,0 @@
-# SYNTHETIC SAMPLE DATA - valid input that contains no commitments.
-Meeting: Casual catch-up
-Meeting date: 2026-10-27
-
-Sam (Internal): Good morning, how was your weekend?
-Elena (Client): It was lovely, we went hiking. The weather was great.
-Sam (Internal): Nice. The new warehouse opened last month, right?
-Elena (Client): Yes, it is running well. The team is happy with it.
