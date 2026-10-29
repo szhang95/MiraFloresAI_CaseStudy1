@@ -1,0 +1,2 @@
+Input error: the transcript is mostly non-English text. The offline rule-based extractor supports English only. Use --llm, or translate first.
+(exit code 2)

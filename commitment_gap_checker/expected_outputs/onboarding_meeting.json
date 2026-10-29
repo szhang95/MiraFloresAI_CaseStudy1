@@ -1,0 +1,311 @@
+{
+  "meeting": "Onboarding kickoff - Northwind Goods",
+  "meeting_date": "2026-10-27",
+  "extractor": "rules (offline)",
+  "notes": [],
+  "summary": {
+    "total": 14,
+    "complete": 4,
+    "needs_attention": 10,
+    "percent_complete": 29,
+    "issue_counts": {
+      "MISSING_OWNER": 6,
+      "MISSING_DATE": 7,
+      "VAGUE_ACTION": 3,
+      "BAD_DATE": 1,
+      "UNCLAIMED_HARD": 2
+    }
+  },
+  "commitments": [
+    {
+      "id": 1,
+      "line": 7,
+      "speaker": "Priya",
+      "sentence": "I'll send the customs document checklist by Thursday.",
+      "owner": "Priya",
+      "owner_side": "internal",
+      "due_text": "Thursday",
+      "due_date": "2026-10-29",
+      "status": "complete",
+      "issues": [],
+      "notes": [
+        "due Thu 2026-10-29"
+      ],
+      "fixes": []
+    },
+    {
+      "id": 2,
+      "line": 8,
+      "speaker": "Elena",
+      "sentence": "I will send our last three months of shipping invoices by 2026-11-03.",
+      "owner": "Elena",
+      "owner_side": "client",
+      "due_text": "2026-11-03",
+      "due_date": "2026-11-03",
+      "status": "complete",
+      "issues": [],
+      "notes": [
+        "due Tue 2026-11-03"
+      ],
+      "fixes": []
+    },
+    {
+      "id": 3,
+      "line": 10,
+      "speaker": "Priya",
+      "sentence": "Tom, can you share the SKU list with HS codes?",
+      "owner": "Tom",
+      "owner_side": "client",
+      "due_text": null,
+      "due_date": null,
+      "status": "missing_date",
+      "issues": [
+        "MISSING_DATE"
+      ],
+      "notes": [
+        "no time expression found"
+      ],
+      "fixes": [
+        "Agree a specific calendar due date (not 'soon' / 'next week')."
+      ]
+    },
+    {
+      "id": 4,
+      "line": 11,
+      "speaker": "Tom",
+      "sentence": "Sure, I'll try to get it to you soon.",
+      "owner": "Tom",
+      "owner_side": "client",
+      "due_text": "soon",
+      "due_date": null,
+      "status": "missing_date",
+      "issues": [
+        "MISSING_DATE",
+        "VAGUE_ACTION"
+      ],
+      "notes": [
+        "'soon' is not a specific date"
+      ],
+      "fixes": [
+        "Agree a specific calendar due date (not 'soon' / 'next week').",
+        "Say what 'done' looks like (a deliverable, not 'look into' / 'try')."
+      ]
+    },
+    {
+      "id": 5,
+      "line": 12,
+      "speaker": "Sam",
+      "sentence": "We should probably review the delivery time estimates with Elena's team.",
+      "owner": null,
+      "owner_side": null,
+      "due_text": null,
+      "due_date": null,
+      "status": "missing_owner",
+      "issues": [
+        "MISSING_OWNER",
+        "MISSING_DATE",
+        "VAGUE_ACTION"
+      ],
+      "notes": [
+        "stated as an obligation of 'we', not a person",
+        "no time expression found"
+      ],
+      "fixes": [
+        "Name one person who owns this.",
+        "Agree a specific calendar due date (not 'soon' / 'next week').",
+        "Say what 'done' looks like (a deliverable, not 'look into' / 'try')."
+      ]
+    },
+    {
+      "id": 6,
+      "line": 14,
+      "speaker": "Priya",
+      "sentence": "I'll book the carrier rate review for next Friday.",
+      "owner": "Priya",
+      "owner_side": "internal",
+      "due_text": "next Friday",
+      "due_date": "2026-11-06",
+      "status": "complete",
+      "issues": [],
+      "notes": [
+        "due Fri 2026-11-06"
+      ],
+      "fixes": []
+    },
+    {
+      "id": 7,
+      "line": 15,
+      "speaker": "Sam",
+      "sentence": "Can you confirm the pickup addresses by tomorrow?",
+      "owner": null,
+      "owner_side": null,
+      "due_text": "tomorrow",
+      "due_date": "2026-10-28",
+      "status": "missing_owner",
+      "issues": [
+        "MISSING_OWNER"
+      ],
+      "notes": [
+        "request made to the room without naming who",
+        "due Wed 2026-10-28"
+      ],
+      "fixes": [
+        "Name one person who owns this."
+      ]
+    },
+    {
+      "id": 8,
+      "line": 16,
+      "speaker": "Elena",
+      "sentence": "We'll send the signed data processing agreement by end of the week.",
+      "owner": null,
+      "owner_side": null,
+      "due_text": "end of the week",
+      "due_date": "2026-10-30",
+      "status": "missing_owner",
+      "issues": [
+        "MISSING_OWNER"
+      ],
+      "notes": [
+        "assigned to 'we' (a group), not a person",
+        "due Fri 2026-10-30"
+      ],
+      "fixes": [
+        "Name one person who owns this."
+      ]
+    },
+    {
+      "id": 9,
+      "line": 17,
+      "speaker": "Sam",
+      "sentence": "Someone needs to sync shipment status from the carrier API into the customer reminder emails.",
+      "owner": null,
+      "owner_side": null,
+      "due_text": null,
+      "due_date": null,
+      "status": "unclaimed_hard",
+      "issues": [
+        "MISSING_OWNER",
+        "MISSING_DATE",
+        "UNCLAIMED_HARD"
+      ],
+      "notes": [
+        "stated as an obligation of 'someone', not a person",
+        "no one responded in the transcript",
+        "no time expression found"
+      ],
+      "fixes": [
+        "Large item with no owner: assign a lead, or split it into smaller pieces, before the meeting ends.",
+        "Name one person who owns this.",
+        "Agree a specific calendar due date (not 'soon' / 'next week')."
+      ]
+    },
+    {
+      "id": 10,
+      "line": 20,
+      "speaker": "Sam",
+      "sentence": "It would be great to link each document checkpoint to the customer's shipment so reminders go out automatically.",
+      "owner": null,
+      "owner_side": null,
+      "due_text": null,
+      "due_date": null,
+      "status": "unclaimed_hard",
+      "issues": [
+        "MISSING_OWNER",
+        "MISSING_DATE",
+        "UNCLAIMED_HARD"
+      ],
+      "notes": [
+        "stated as a wish, no owner named",
+        "no time expression found"
+      ],
+      "fixes": [
+        "Large item with no owner: assign a lead, or split it into smaller pieces, before the meeting ends.",
+        "Name one person who owns this.",
+        "Agree a specific calendar due date (not 'soon' / 'next week')."
+      ]
+    },
+    {
+      "id": 11,
+      "line": 21,
+      "speaker": "Elena",
+      "sentence": "I'll check with our warehouse about the Oct 15 cutoff for returns.",
+      "owner": "Elena",
+      "owner_side": "client",
+      "due_text": "Oct 15",
+      "due_date": null,
+      "status": "bad_date",
+      "issues": [
+        "BAD_DATE"
+      ],
+      "notes": [
+        "'Oct 15' resolves to 2026-10-15, which is before the meeting date 2026-10-27"
+      ],
+      "fixes": [
+        "Re-confirm the date with the people involved."
+      ]
+    },
+    {
+      "id": 12,
+      "line": 22,
+      "speaker": "Sam",
+      "sentence": "I'll send the meeting notes tonight.",
+      "owner": "Sam",
+      "owner_side": "internal",
+      "due_text": "tonight",
+      "due_date": "2026-10-27",
+      "status": "complete",
+      "issues": [],
+      "notes": [
+        "due Tue 2026-10-27"
+      ],
+      "fixes": []
+    },
+    {
+      "id": 13,
+      "line": 23,
+      "speaker": "Priya",
+      "sentence": "Let's meet again next week to check progress.",
+      "owner": null,
+      "owner_side": null,
+      "due_text": "next week",
+      "due_date": null,
+      "status": "missing_owner",
+      "issues": [
+        "MISSING_OWNER",
+        "MISSING_DATE"
+      ],
+      "notes": [
+        "assigned to 'we' (a group), not a person",
+        "'next week' is not a specific date"
+      ],
+      "fixes": [
+        "Name one person who owns this.",
+        "Agree a specific calendar due date (not 'soon' / 'next week')."
+      ]
+    },
+    {
+      "id": 14,
+      "line": 24,
+      "speaker": "Elena",
+      "sentence": "Maybe I can look into the customs broker question at some point.",
+      "owner": "Elena",
+      "owner_side": "client",
+      "due_text": "at some point",
+      "due_date": null,
+      "status": "missing_date",
+      "issues": [
+        "MISSING_DATE",
+        "VAGUE_ACTION"
+      ],
+      "notes": [
+        "'at some point' is not a specific date"
+      ],
+      "fixes": [
+        "Agree a specific calendar due date (not 'soon' / 'next week').",
+        "Say what 'done' looks like (a deliverable, not 'look into' / 'try')."
+      ]
+    }
+  ],
+  "followup_draft": "Subject: Follow-up: Onboarding kickoff - Northwind Goods - next steps (2026-10-27)\n\nHi all,\n\nThanks for the time today. Here is what we captured.\n\nConfirmed (owner and date agreed):\n- Priya, due 2026-10-29: \"I'll send the customs document checklist by Thursday.\"\n- Elena, due 2026-11-03: \"I will send our last three months of shipping invoices by 2026-11-03.\"\n- Priya, due 2026-11-06: \"I'll book the carrier rate review for next Friday.\"\n- Sam, due 2026-10-27: \"I'll send the meeting notes tonight.\"\n\nStill open - please reply with what is missing:\n- \"Tom, can you share the SKU list with HS codes?\" - needs a due date\n- \"Sure, I'll try to get it to you soon.\" - needs a due date, a concrete deliverable\n- \"We should probably review the delivery time estimates with Elena's team.\" - needs an owner, a due date, a concrete deliverable\n- \"Can you confirm the pickup addresses by tomorrow?\" - needs an owner\n- \"We'll send the signed data processing agreement by end of the week.\" - needs an owner\n- \"Someone needs to sync shipment status from the carrier API into the customer reminder emails.\" - needs a lead or a smaller scope, an owner, a due date\n- \"It would be great to link each document checkpoint to the customer's shipment so reminders go out automatically.\" - needs a lead or a smaller scope, an owner, a due date\n- \"I'll check with our warehouse about the Oct 15 cutoff for returns.\" - needs a corrected date\n- \"Let's meet again next week to check progress.\" - needs an owner, a due date\n- \"Maybe I can look into the customs broker question at some point.\" - needs a due date, a concrete deliverable\n\nBest,\n[your name]"
+}

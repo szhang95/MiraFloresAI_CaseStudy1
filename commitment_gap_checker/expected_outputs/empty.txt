@@ -1,0 +1,2 @@
+Input error: the input is empty. Provide a meeting transcript.
+(exit code 2)
