@@ -1,0 +1,61 @@
+==============================================================================
+COMMITMENT GAP CHECK  -  Quarterly checkpoint - Acme Freight
+Meeting date: 2026-10-27 (Tuesday)   Extractor: rules (offline)
+==============================================================================
+
+5 commitments found: 2 complete (40%), 3 need attention.
+  missing owner: 0   missing/imprecise date: 0   vague wording: 0   date problem: 3   unclaimed large items: 0
+
+------------------------------------------------------------------------------
+DETAIL
+------------------------------------------------------------------------------
+[1] line 6  NEEDS ATTENTION: date problem
+    "I'll send the updated address list on Feb 30."
+    owner: Lena (client)   due: -
+    note: 'Feb 30' is not a real calendar date
+    fix: Re-confirm the date with the people involved.
+
+[2] line 7  NEEDS ATTENTION: date problem
+    "I'll deliver the revised timeline by 2026-10-20."
+    owner: Sam (internal)   due: -
+    note: '2026-10-20' resolves to 2026-10-20, which is before the meeting
+          date 2026-10-27
+    fix: Re-confirm the date with the people involved.
+
+[3] line 8  NEEDS ATTENTION: date problem
+    "I will send the signed forms by 13/45."
+    owner: Lena (client)   due: -
+    note: '13/45' is not a real calendar date
+    fix: Re-confirm the date with the people involved.
+
+[4] line 9  COMPLETE
+    "I'll prepare the compliance pack by the end of the month."
+    owner: Raj (internal)   due: 2026-10-31
+    note: due Sat 2026-10-31
+
+[5] line 10  COMPLETE
+    "Lena, can you confirm the warehouse hours by 2026-11-02?"
+    owner: Lena (client)   due: 2026-11-02
+    note: due Mon 2026-11-02
+
+------------------------------------------------------------------------------
+DRAFT FOLLOW-UP MESSAGE (review before sending)
+------------------------------------------------------------------------------
+Subject: Follow-up: Quarterly checkpoint - Acme Freight - next steps (2026-10-27)
+
+Hi all,
+
+Thanks for the time today. Here is what we captured.
+
+Confirmed (owner and date agreed):
+- Raj, due 2026-10-31: "I'll prepare the compliance pack by the end of the month."
+- Lena, due 2026-11-02: "Lena, can you confirm the warehouse hours by 2026-11-02?"
+
+Still open - please reply with what is missing:
+- "I'll send the updated address list on Feb 30." - needs a corrected date
+- "I'll deliver the revised timeline by 2026-10-20." - needs a corrected date
+- "I will send the signed forms by 13/45." - needs a corrected date
+
+Best,
+[your name]
+

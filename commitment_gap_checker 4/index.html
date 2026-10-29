@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commitment Gap Checker</title>
+<style>
+:root{color-scheme:light;--bg:#f3f5f8;--card:#fff;--fg:#1f2933;--mute:#5f6b7a;--line:#dde3ea;--ok:#16794a;--okbg:#e6f4ed;--warn:#995c00;--warnbg:#fff4de;--bad:#b42323;--badbg:#fdeaea;--acc:#1d3f72}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,sans-serif}
+main{max-width:1080px;margin:0 auto;padding:24px 18px 48px}h1{font-size:26px;margin:0 0 6px;color:var(--acc)}.lead{color:var(--mute);margin:0 0 20px;max-width:60ch}
+.grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.25fr);gap:18px;align-items:start}@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(20,40,80,.06)}
+.how h3{margin:0 0 10px;font-size:18px}.how ol{margin:0 0 18px;padding-left:22px}.how li{margin:8px 0}.adv{margin:14px 0 4px}.adv summary{cursor:pointer;color:var(--acc);font-size:14px}.adv input{margin-top:6px}
+h2{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);margin:0 0 8px}
+.step{font-weight:600;margin:14px 0 6px}.help{color:var(--mute);font-size:14px;margin:0 0 6px}
+textarea{width:100%;height:300px;font:13px/1.45 ui-monospace,monospace;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:10px}
+select,input,button{font:inherit;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--fg)}
+select{width:100%}input{width:11em}button{cursor:pointer}button.go{width:100%;margin-top:14px;padding:12px;font-weight:600;background:var(--acc);color:#fff;border-color:var(--acc)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.used{font-size:14px;margin-top:6px}.used.w{color:var(--warn)}
+.hero{border-radius:10px;padding:14px 16px;margin-bottom:14px}.hero.good{background:var(--okbg)}.hero.some{background:var(--warnbg)}.hero.none{background:var(--badbg)}
+.hero b{font-size:20px;display:block}.hero span{color:var(--mute);font-size:14px}.bar{height:8px;border-radius:99px;background:var(--line);margin-top:10px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ok)}
+.tabs{display:flex;gap:6px;margin:16px 0 8px}.tabs button{padding:6px 14px;border-radius:99px}.tabs button[aria-pressed=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.first{border:2px solid var(--bad);border-radius:10px;padding:12px 14px;margin-bottom:6px}.first h3{margin:0 0 6px;font-size:16px;color:var(--bad)}.first p{margin:6px 0;font-size:15px}
+.row{display:grid;grid-template-columns:26px 1fr;gap:10px;padding:12px 0;border-top:1px solid var(--line)}
+.dot{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;margin-top:2px}
+.dot.complete{background:var(--okbg);color:var(--ok)}.dot.warn{background:var(--warnbg);color:var(--warn)}.dot.bad{background:var(--badbg);color:var(--bad)}
+.q{font-weight:500}.chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.chip{font-size:13px;padding:2px 10px;border-radius:99px;background:var(--bg);border:1px solid var(--line)}
+.chip.miss{background:var(--warnbg);border-color:transparent;color:var(--warn)}.chip.big{background:var(--badbg);border-color:transparent;color:var(--bad)}
+.ask{font-size:14px;color:var(--fg)}.ask b{color:var(--acc)}details{margin-top:4px;font-size:13px;color:var(--mute)}summary{cursor:pointer}
+.err{background:var(--badbg);color:var(--bad);padding:14px;border-radius:10px}.err b{display:block;margin-bottom:2px}
+.empty{color:var(--mute);padding:30px 8px;text-align:center}pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;font-size:13px}
+</style>
+</head>
+<body>
+<main>
+<h1>Commitment Gap Checker</h1>
+<p class="lead">Paste your meeting notes. It finds every promise made in the meeting and shows which ones still have <b>no owner</b> or <b>no date</b>, so you can fix them before everyone leaves. Runs in your browser; nothing is uploaded.</p>
+<div class="grid">
+ <section class="card">
+  <div class="step">1. Add your meeting notes</div>
+  <label for="sample" class="help">Try an example, or paste your own below.</label>
+  <select id="sample"><option value="">Choose an example...</option>
+   <option value="onboarding_meeting.txt">Example: client onboarding meeting</option>
+   <option value="contradictory_dates.txt">Example: impossible dates (Feb 30...)</option>
+   <option value="smalltalk.txt">Example: chat with no promises</option>
+   <option value="empty.txt">Bad input: empty</option>
+   <option value="garbled.txt">Bad input: garbled text</option>
+   <option value="chinese_transcript.txt">Bad input: not English</option></select>
+  <textarea id="t" spellcheck="false" aria-label="Meeting notes" placeholder="Meeting date: 2026-10-27&#10;Priya (Internal): I'll send the checklist by Thursday.&#10;Elena (Client): I will send the invoices by 2026-11-03."></textarea>
+  <details class="adv"><summary>My notes have no &ldquo;Meeting date:&rdquo; line</summary><p class="help">Type the day the meeting took place, so words like &ldquo;Thursday&rdquo; or &ldquo;tomorrow&rdquo; can become real dates. Format: 2026-10-27.</p><input id="d" placeholder="2026-10-27" aria-label="Meeting date, only if the notes have none"></details>
+  <div class="step">2. Check it</div>
+  <button class="go" id="run">Check for gaps</button>
+  <div class="used" id="used"></div>
+ </section>
+ <section class="card" id="out" aria-live="polite"><div class="how"><h3>How it works</h3><ol><li><b>Add meeting notes.</b> Paste what was said in a meeting, or use the example.</li><li><b>Click &ldquo;Check for gaps&rdquo;.</b></li><li><b>Read the red box.</b> It lists promises nobody owns, so you can assign them before the meeting ends.</li></ol><button class="go" id="ex" style="margin-top:0">Try it with an example meeting</button></div></section>
+</div>
+</main>
+<script src="gap_checker.js"></script>
+<script>
+const $ = id => document.getElementById(id), G = GapChecker;
+const el = (t, c, x) => { const e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
+const SHORT = {MISSING_OWNER:'No owner', MISSING_DATE:'No date', VAGUE_ACTION:'Vague', BAD_DATE:'Date problem', UNCLAIMED_HARD:'Big task, nobody took it'};
+const ASK = {MISSING_OWNER:'Who will do this?', MISSING_DATE:'By which date?', VAGUE_ACTION:'What exactly will be delivered?', BAD_DATE:'Is this date right?', UNCLAIMED_HARD:'Who takes the lead, or how can it be split up?'};
+const tone = i => i.status === 'complete' ? 'complete' : /bad_date|unclaimed/.test(i.status) ? 'bad' : 'warn';
+let R = null, filter = 'all';
+
+function row(i) {
+  const r = el('div', 'row'), t = tone(i), b = el('div');
+  r.append(el('div', 'dot ' + t, i.status === 'complete' ? '\u2713' : '!'), b);
+  b.append(el('div', 'q', '\u201c' + i.sentence + '\u201d'));
+  const chips = el('div', 'chips');
+  chips.append(el('span', 'chip' + (i.owner ? '' : ' miss'), 'Owner: ' + (i.owner || 'none')),
+               el('span', 'chip' + (i.due_date ? '' : ' miss'), 'Due: ' + (i.due_date || 'none')));
+  b.append(chips);
+  const keys = G.PRIO.filter(k => i.issues.includes(k));
+  if (keys.length) { const a = el('div', 'ask'); a.append(el('b', null, 'Ask: '), document.createTextNode(keys.map(k => ASK[k]).join('  ')));
+    b.append(a); keys.filter(k => k === 'UNCLAIMED_HARD').forEach(() => chips.append(el('span', 'chip big', SHORT.UNCLAIMED_HARD))); }
+  const why = i.notes.filter(n => !/^due /.test(n));
+  if (why.length) { const d = el('details'); d.append(el('summary', null, 'Why flagged'), ...why.map(n => el('div', null, n))); b.append(d); }
+  return r;
+}
+function list() {
+  const box = $('list'); box.replaceChildren();
+  const items = R.items.filter(i => filter === 'all' || (filter === 'fix' ? i.status !== 'complete' : i.status === 'complete'));
+  if (!items.length) box.append(el('div', 'empty', 'Nothing here.'));
+  items.forEach(i => box.append(row(i)));
+}
+function render(r) {
+  R = r; const o = $('out'); o.replaceChildren();
+  o.append(el('h2', null, (r.title || 'Meeting') + ' \u00b7 ' + r.meeting_date + ' (' + r.weekday + ')'));
+  if (!r.items.length) { o.append(el('div', 'empty', 'No promises found in these notes. If you expected some, check that each line looks like "Name (Client): text" and is in English.')); return; }
+  const s = r.summary, cls = s.needs_attention === 0 ? 'good' : s.complete === 0 ? 'none' : 'some', h = el('div', 'hero ' + cls);
+  h.append(el('b', null, s.needs_attention === 0 ? 'All ' + s.total + ' promises are ready.' : s.needs_attention + ' of ' + s.total + ' promises need a fix.'),
+           el('span', null, s.complete + ' ready (owner and date are clear)'));
+  const bar = el('div', 'bar'), fill = el('i'); fill.style.width = s.percent_complete + '%'; bar.append(fill); h.append(bar); o.append(h);
+  const nobody = r.items.filter(i => i.issues.includes('MISSING_OWNER'))
+    .sort((a, b) => b.issues.includes('UNCLAIMED_HARD') - a.issues.includes('UNCLAIMED_HARD'));
+  if (nobody.length) { const f = el('div', 'first'); f.append(el('h3', null, 'Settle these before the meeting ends: nobody owns them'));
+    nobody.forEach(i => f.append(el('p', null, (i.issues.includes('UNCLAIMED_HARD') ? '\u26a0 Big task: ' : '\u2022 ') + '\u201c' + i.sentence + '\u201d'))); o.append(f); }
+  const tabs = el('div', 'tabs');
+  [['all', 'All (' + s.total + ')'], ['fix', 'Need a fix (' + s.needs_attention + ')'], ['ok', 'Ready (' + s.complete + ')']].forEach(([k, label]) => {
+    const b = el('button', null, label); b.setAttribute('aria-pressed', k === filter);
+    b.onclick = () => { filter = k; tabs.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); list(); }; tabs.append(b); });
+  const lst = el('div'); lst.id = 'list'; o.append(tabs, lst); list();
+  const d = el('details'), pre = el('pre', null, r.followup_draft), cp = el('button', null, 'Copy message');
+  cp.onclick = () => navigator.clipboard.writeText(r.followup_draft).then(() => { cp.textContent = 'Copied'; });
+  d.append(el('summary', null, 'Draft follow-up email to the client'), pre, cp); d.style.marginTop = '16px'; o.append(d);
+}
+function run() {
+  const typed = $('d').value.trim(), u = $('used'); u.className = 'used'; u.textContent = '';
+  try {
+    const r = G.analyse($('t').value, typed || undefined); filter = 'all'; render(r);
+    if (typed && r.header_date && typed !== r.header_date) { u.className = 'used w'; u.textContent = 'Using your typed date ' + typed + ' instead of ' + r.header_date + ' from the notes. Clear this box to use the notes\u2019 date.'; }
+    else u.textContent = 'Date used: ' + r.meeting_date + (typed ? ' (typed by you)' : ' (from the notes)');
+  } catch (e) {
+    if (!(e instanceof G.InputError)) throw e;
+    const x = el('div', 'err'); x.append(el('b', null, 'Can\u2019t check this input'), el('span', null, e.message)); $('out').replaceChildren(x);
+  }
+}
+$('run').onclick = run;
+async function loadSample(v) {
+  if (!v) return;
+  try { const res = await fetch('sample_data/' + v); if (!res.ok) throw new Error(res.status);
+    $('t').value = await res.text(); $('d').value = ''; $('sample').value = v; run(); }
+  catch (err) { $('out').replaceChildren(el('div', 'err', 'Could not load the example. Open this page via "python3 -m http.server 8000", not by double-clicking the file.')); }
+}
+$('sample').onchange = e => loadSample(e.target.value);
+$('ex').onclick = () => loadSample('onboarding_meeting.txt');
+</script>
+</body>
+</html>

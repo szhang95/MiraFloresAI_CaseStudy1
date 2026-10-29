@@ -1,0 +1,22 @@
+==============================================================================
+COMMITMENT GAP CHECK  -  Casual catch-up
+Meeting date: 2026-10-27 (Tuesday)   Extractor: rules (offline)
+==============================================================================
+
+No commitments detected.
+If you expected some, check that lines look like 'Name (Side): text' and are in English.
+
+------------------------------------------------------------------------------
+DRAFT FOLLOW-UP MESSAGE (review before sending)
+------------------------------------------------------------------------------
+Subject: Follow-up: Casual catch-up - next steps (2026-10-27)
+
+Hi all,
+
+Thanks for the time today. Here is what we captured.
+
+We did not record any specific commitments.
+
+Best,
+[your name]
+

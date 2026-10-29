@@ -1,0 +1,2 @@
+Input error: the input does not look like a transcript (only 20% of characters are letters). It may be garbled or a binary/encoded file.
+(exit code 2)
